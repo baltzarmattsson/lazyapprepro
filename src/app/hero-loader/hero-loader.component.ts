@@ -19,8 +19,7 @@ export class HeroLoaderTempComponent {
 
 	// Not working
 	async ngOnInit() {
-		let module = await import(this.path)
-			.then(m => (m as any)[Object.keys(m)[0]]);
+		let module = await import(this.path).then(m => (m as any)[Object.keys(m)[0]]);
 		console.log("Module", module);
 		this.loadModuleComponents(module);
 	}

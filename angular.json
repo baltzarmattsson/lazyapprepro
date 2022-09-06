@@ -30,9 +30,6 @@
             "styles": [
               "src/styles.scss"
             ],
-            // "lazyModules": [
-            //   "src/app/plugin1/plugin1.module"
-            // ],
             "scripts": []
           },
           "configurations": {
@@ -104,8 +101,22 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
