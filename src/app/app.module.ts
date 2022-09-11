@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from "@angular/router";
 import { AppComponent } from './app.component';
 import { HeroLoaderModule } from './hero-loader/hero-loader.module';
+import { ThreeComponent } from './three/three.component';
 // let routing = RouterModule.forRoot([
 // 	{
 // 		path: "",
@@ -16,7 +17,8 @@ import { HeroLoaderModule } from './hero-loader/hero-loader.module';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+  ThreeComponent
 	],
 	imports: [
 		BrowserModule,
