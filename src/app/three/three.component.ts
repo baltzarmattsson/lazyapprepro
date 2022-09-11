@@ -10,6 +10,8 @@ import { TransformControls } from "three/examples/jsm/controls/TransformControls
 })
 export class ThreeComponent implements OnInit {
 
+	dir!: THREE.DirectionalLight;
+
 	private controls!: OrbitControls;
 	private tcontrols!: TransformControls;
 	private scene = new THREE.Scene();
@@ -25,21 +27,8 @@ export class ThreeComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit(): void {
-		// @ts-ignore
-		window["scene"] = this.scene;
-		this.renderer.shadowMap.enabled = true;
-		// @ts-ignore
-		window["renderer"] = this.renderer;
-		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-		console.log(this.renderer);
-
 		document.getElementById("container")?.appendChild(this.renderer.domElement);
-		this.renderer.setSize(1000, 1000)
-		this.init();
-		this.renderLoop();
-	}
-
-	private init() {
+		this.renderer.setSize(900, 900)
 		let plane = new THREE.PlaneGeometry(100, 100);
 		let pmat = new THREE.MeshPhongMaterial({ color: "green" })
 		pmat.side = THREE.DoubleSide;
@@ -70,10 +59,31 @@ export class ThreeComponent implements OnInit {
 		box.castShadow = true;
 		this.podium.receiveShadow = true;
 
-		let spot = new THREE.SpotLight("white", 1, 0);
+		let spot = new THREE.SpotLight("white", 0.5, 0);
 		spot.castShadow = true;
 		this.scene.add(spot);
 		spot.position.set(10, 20, -10);
+
+		this.dir = new THREE.DirectionalLight("white", 0.5);
+		this.dir.castShadow = true;
+		this.scene.add(this.dir);
+		spot.position.set(10, 20, 10);
+		spot.target.position.set(0, 0, 0);
+
+		// let spot2 = new THREE.SpotLight("white", 0.5, 0);
+		// spot2.castShadow = true;
+		// this.scene.add(spot2);
+		// spot2.position.set(10, 20, 10);
+
+		// let spot3 = new THREE.SpotLight("white", 0.5, 0);
+		// spot3.castShadow = true;
+		// this.scene.add(spot3);
+		// spot3.position.set(-10, 20, 10);
+
+		// let spot4 = new THREE.SpotLight("white", 0.5, 0);
+		// spot4.castShadow = true;
+		// this.scene.add(spot4);
+		// spot4.position.set(10, -20, 10);
 
 		this.tcontrols.attach(spot);
 		this.tcontrols.setMode("translate");
@@ -84,6 +94,7 @@ export class ThreeComponent implements OnInit {
 		// @ts-ignore
 		console.log(window["materials"]);
 
+		this.renderLoop();
 	}
 
 	renderLoop() {

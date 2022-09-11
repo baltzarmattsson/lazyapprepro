@@ -1,5 +1,9 @@
-<p>three works!</p>
-
+<button
+    class="p-2 bg-gray-400 text-white rounded"
+    (click)="dir.castShadow = !dir.castShadow"
+>
+    Toggle dir shadow, cur: {{dir?.castShadow}}
+</button>
 <div
     id="container"
     #container
