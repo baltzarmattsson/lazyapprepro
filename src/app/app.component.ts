@@ -6,10 +6,8 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	title = 'Lazyloading';
+	title = 'Threetest';
 
 	ngOnInit() {
-		console.log("logtest");
-		
 	}
 }
